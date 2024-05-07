@@ -4,8 +4,8 @@ import {
   refreshSystemTheme,
   selectIsAppActive,
   selectIsDark,
-} from "../../../store/slices/systemSlice";
-import { useAppDispatch, useAppSelector } from "@/src/store/reduxHooks";
+} from "../../../redux/slices/systemSlice";
+import { useAppDispatch, useAppSelector } from "@/src/redux/reduxHooks";
 
 // updates system theme on app focus
 // returns active theme object based on current dark mode state

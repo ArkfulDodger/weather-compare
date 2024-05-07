@@ -19,7 +19,7 @@ const AppWrapper = ({ children }: Props) => {
   const theme = useThemeControl();
 
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <PaperProvider theme={theme as ThemeProp}>
         <ThemeProvider value={theme as Theme}>
           {children}

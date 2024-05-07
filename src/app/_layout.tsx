@@ -4,7 +4,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { Provider as StoreProvider } from "react-redux";
-import { store } from "../store/store";
+import { store } from "../redux/store";
 import AppWrapper from "../features/app-wrapper/components/AppWrapper";
 
 export {

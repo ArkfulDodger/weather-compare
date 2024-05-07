@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { AppState } from "react-native";
-import { setAppState } from "../../../store/slices/systemSlice";
-import { useAppDispatch } from "@/src/store/reduxHooks";
+import { setAppState } from "../../../redux/slices/systemSlice";
+import { useAppDispatch } from "@/src/redux/reduxHooks";
 
 // hook that ensures the app state updates with changes while the parent is mounted
 const useAppState = () => {

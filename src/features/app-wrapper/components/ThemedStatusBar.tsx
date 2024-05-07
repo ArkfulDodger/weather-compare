@@ -1,5 +1,5 @@
-import { useAppSelector } from "@/src/store/reduxHooks";
-import { selectIsDark } from "@/src/store/slices/systemSlice";
+import { useAppSelector } from "@/src/redux/reduxHooks";
+import { selectIsDark } from "@/src/redux/slices/systemSlice";
 import { StatusBar, StatusBarProps } from "expo-status-bar";
 
 // status bar component which will update its style to fit dark/light theme
