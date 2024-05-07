@@ -7,6 +7,7 @@ import { Weekday } from "@/src/constants/weekdays";
 // Define a type for the slice state
 interface WeatherSelectionState {
   location: string;
+  locationInput: string;
   day: Weekday;
   time: TimeOfDay;
 }
@@ -14,6 +15,7 @@ interface WeatherSelectionState {
 // This is the initial state of the slice
 const initialState: WeatherSelectionState = {
   location: "New York, New York",
+  locationInput: "",
   day: new Date().getDay(),
   time: getTimeOfDay(new Date().getHours()) ?? TimeOfDay.Afternoon,
 };
@@ -25,6 +27,11 @@ const weatherSelectionSlice = createSlice({
     // set the location
     setLocation: (state, action: PayloadAction<string>) => {
       state.location = action.payload;
+    },
+
+    // set the location
+    setLocationInput: (state, action: PayloadAction<string>) => {
+      state.locationInput = action.payload;
     },
 
     // set the day of the week
@@ -40,11 +47,14 @@ const weatherSelectionSlice = createSlice({
 });
 
 // Export all newly created actions here
-export const { setLocation, setDay, setTime } = weatherSelectionSlice.actions;
+export const { setLocation, setLocationInput, setDay, setTime } =
+  weatherSelectionSlice.actions;
 
 // Create selectors here, or in their own files if needed
 export const selectLocation = (state: RootState) =>
   state.weatherSelection.location;
+export const selectLocationInput = (state: RootState) =>
+  state.weatherSelection.locationInput;
 export const selectDay = (state: RootState) => state.weatherSelection.day;
 export const selectTime = (state: RootState) => state.weatherSelection.time;
 
