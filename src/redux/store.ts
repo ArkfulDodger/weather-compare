@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import systemReducer from "./slices/systemSlice";
+import weatherSelectionReducer from "./slices/weatherSelectionSlice";
 
 export const store = configureStore({
   reducer: {
     system: systemReducer,
+    weatherSelection: weatherSelectionReducer,
   },
 });
 

@@ -1,6 +1,9 @@
 import Picker from "@/src/components/molecules/Picker";
-import { getTimeOfDay, TimeOfDay } from "@/src/constants/timesOfDay";
-import { useState } from "react";
+import { TimeOfDay } from "@/src/constants/timesOfDay";
+import { useAppDispatch, useAppSelector } from "@/src/redux/reduxHooks";
+import { selectTime, setTime } from "@/src/redux/slices/weatherSelectionSlice";
+import { ItemValue } from "@react-native-picker/picker/typings/Picker";
+import { useCallback } from "react";
 
 type Props = {};
 
@@ -13,19 +16,22 @@ const timeOptions = {
 
 // a picker element for selecting the time of day to check the weather for
 const TimePicker = ({}: Props) => {
-  // initialize to current local hour; default to noon if outside defined time blocks
-  const [timeBlock, setTimeBlock] = useState<string | number>(
-    getTimeOfDay(new Date().getHours()) ?? TimeOfDay.Afternoon
+  const time = useAppSelector(selectTime);
+  const dispatch = useAppDispatch();
+
+  const onTimeSelect = useCallback(
+    (itemValue: ItemValue, itemIndex: number) => {
+      dispatch(setTime(itemValue as TimeOfDay));
+    },
+    []
   );
 
   return (
     <>
       <Picker
         data={timeOptions}
-        selectedValue={timeBlock}
-        onValueChange={(item) => {
-          setTimeBlock(item);
-        }}
+        selectedValue={time}
+        onValueChange={onTimeSelect}
       />
     </>
   );
