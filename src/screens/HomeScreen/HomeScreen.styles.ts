@@ -20,13 +20,13 @@ export interface Styles extends StaticStyles, DynamicStyles {}
 
 export const createStyles = (theme: AppTheme, insets: EdgeInsets): Styles => {
   const staticStyles = StyleSheet.create<StaticStyles>({
-    container: {},
+    container: { flex: 1 },
     headerContainer: { paddingTop: insets.top },
-    upperHeader: {},
+    upperHeader: { flexDirection: "row", justifyContent: "space-between" },
     headerLabel: {},
     menuButton: {},
     locationPicker: {},
-    timeRow: {},
+    timeRow: { flexDirection: "row", alignItems: "center" },
   });
 
   const dynamicStyles: DynamicStyles = {
