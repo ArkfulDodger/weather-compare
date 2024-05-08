@@ -1,7 +1,9 @@
 import useStyles from "@/src/hooks/useStyles";
 import { createStyles } from "./WeatherList.styles";
-import { FlatList } from "react-native-gesture-handler";
 import WeatherListItem, { WeatherListItemProps } from "../WeatherListItem";
+import { useCallback } from "react";
+import { FlatList, View } from "react-native";
+import metrics from "@/src/utils/metrics";
 
 export type Props = {};
 
@@ -116,12 +118,19 @@ const testData: WeatherListItemProps[] = [
 const WeatherList = ({}: Props) => {
   const styles = useStyles(createStyles);
 
-  const renderItem = ({ item }: { item: WeatherListItemProps }) => (
-    <WeatherListItem {...item} />
+  const renderItem = useCallback(
+    ({ item }: { item: WeatherListItemProps }) => (
+      <View>
+        <WeatherListItem {...item} />
+      </View>
+    ),
+    []
   );
 
   return (
     <FlatList
+      snapToInterval={metrics.screenWidth}
+      disableIntervalMomentum
       horizontal
       data={testData}
       renderItem={renderItem}

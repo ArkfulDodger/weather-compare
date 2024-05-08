@@ -1,7 +1,12 @@
 // the weather icons returned from Visual Crossing API in descending priority
 // and the React Native Paper icon used to represent it
 
-const WEATHER_ICONS = {
+interface WeatherIcon {
+  icon: string;
+  priority: number;
+}
+
+export const WEATHER_ICONS: { [icon: string]: WeatherIcon } = {
   snow: {
     icon: "weather-snowy-heavy",
     priority: 0,

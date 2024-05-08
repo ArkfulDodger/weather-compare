@@ -2,8 +2,9 @@ import useStyles from "@/src/hooks/useStyles";
 import { createStyles } from "./WeatherListItem.styles";
 import { HourlyData } from "@/src/utils/types";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Icon, Text } from "react-native-paper";
 import { getFormattedDate } from "@/src/utils/helpers";
+import { WEATHER_ICONS } from "@/src/constants/weatherIcons";
 
 export type Props = {
   datetime: string;
@@ -17,58 +18,6 @@ export type Props = {
   hours: HourlyData[];
 };
 
-// const testData: Props = {
-//   datetime: "2024-05-07",
-//   icon: "clear-day",
-//   conditions: "Clear",
-//   temp: 68.7,
-//   windspeed: 10.0,
-//   precipprob: 2.0,
-//   // preciptype: null,
-//   hours: [
-//     {
-//       datetime: "08:00:00",
-//       datetimeEpoch: 1715083200,
-//       temp: 64.1,
-//       precipprob: 0.0,
-//       preciptype: null,
-//       windspeed: 3.4,
-//       conditions: "Clear",
-//       icon: "clear-day",
-//     },
-//     {
-//       datetime: "09:00:00",
-//       datetimeEpoch: 1715086800,
-//       temp: 65.1,
-//       precipprob: 0.0,
-//       preciptype: null,
-//       windspeed: 3.5,
-//       conditions: "Clear",
-//       icon: "clear-day",
-//     },
-//     {
-//       datetime: "10:00:00",
-//       datetimeEpoch: 1715090400,
-//       temp: 70.0,
-//       precipprob: 0.0,
-//       preciptype: null,
-//       windspeed: 10.0,
-//       conditions: "Clear",
-//       icon: "clear-day",
-//     },
-//     {
-//       datetime: "11:00:00",
-//       datetimeEpoch: 1715094000,
-//       temp: 73.0,
-//       precipprob: 0.0,
-//       preciptype: null,
-//       windspeed: 3.5,
-//       conditions: "Clear",
-//       icon: "clear-day",
-//     },
-//   ],
-// };
-
 const WeatherListItem = (props: Props) => {
   const styles = useStyles(createStyles);
 
@@ -76,7 +25,24 @@ const WeatherListItem = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text>{dateString}</Text>
+      <Text style={styles.h1}>{dateString}</Text>
+      <View style={styles.infoContainer}>
+        <Icon source={WEATHER_ICONS[props.icon].icon} size={100} />
+        <View style={styles.info}>
+          <Text style={styles.body}>
+            {props.conditions.split(",")[0]} {props.temp}°F
+          </Text>
+          <Text>
+            <Icon source="weather-windy" size={16} /> winds {props.windspeed}mph
+          </Text>
+          <Text style={styles.small}>
+            <Icon source="water" size={16} />{" "}
+            {props.preciptype
+              ? `${props.precipprob}% chance of ${props.preciptype}`
+              : "no rain"}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };
