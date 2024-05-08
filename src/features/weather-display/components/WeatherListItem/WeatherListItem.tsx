@@ -5,6 +5,9 @@ import { View } from "react-native";
 import { Icon, Text } from "react-native-paper";
 import { getFormattedDate } from "@/src/utils/helpers";
 import { WEATHER_ICONS } from "@/src/constants/weatherIcons";
+import WeatherChart from "../../WeatherChart";
+import { useAppSelector } from "@/src/redux/reduxHooks";
+import { selectTime } from "@/src/redux/slices/weatherSelectionSlice";
 
 export type Props = {
   datetime: string;
@@ -20,6 +23,7 @@ export type Props = {
 
 const WeatherListItem = (props: Props) => {
   const styles = useStyles(createStyles);
+  const timeOfDay = useAppSelector(selectTime);
 
   const dateString = getFormattedDate(props.datetime, props.timezone);
 
@@ -43,6 +47,8 @@ const WeatherListItem = (props: Props) => {
           </Text>
         </View>
       </View>
+      <WeatherChart hours={props.hours} />
+      <Text>{timeOfDay}</Text>
     </View>
   );
 };

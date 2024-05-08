@@ -30,6 +30,18 @@ export const generateWeatherAPIUrl = (locationInput: string): string => {
   return apiUrl;
 };
 
+// convert 00:00:00 military timestamp to 0:00 am/pm timestamp
+export const convertTimestamp = (timestamp: string): string => {
+  const [hours, minutes] = timestamp.split(":").map(Number);
+
+  let formattedHours = hours % 12; // Convert to 12-hour format
+  if (formattedHours === 0) {
+    formattedHours = 12; // Special case when hours is 12
+  }
+
+  return `${formattedHours}:${minutes < 10 ? "0" : ""}${minutes}`;
+};
+
 // get a formatted string to display for the given date in the given timezone
 export const getFormattedDate = (
   dateTimeString: string,
