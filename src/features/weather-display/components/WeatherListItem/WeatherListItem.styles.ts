@@ -9,6 +9,7 @@ interface StaticStyles {
   h1: TextStyle;
   body: TextStyle;
   small: TextStyle;
+  chartContainer: ViewStyle;
 }
 
 interface DynamicStyles {
@@ -37,6 +38,9 @@ export const createStyles = (theme: AppTheme): Styles => {
     },
     small: {
       fontSize: 14,
+    },
+    chartContainer: {
+      alignSelf: "stretch",
     },
   });
 

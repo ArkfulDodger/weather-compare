@@ -47,8 +47,10 @@ const WeatherListItem = (props: Props) => {
           </Text>
         </View>
       </View>
-      <WeatherChart hours={props.hours} />
-      <Text>{timeOfDay}</Text>
+      <View style={styles.chartContainer}>
+        <WeatherChart hours={props.hours} />
+      </View>
+      <Text style={styles.small}>{timeOfDay}</Text>
     </View>
   );
 };

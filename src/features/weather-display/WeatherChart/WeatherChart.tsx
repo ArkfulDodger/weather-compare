@@ -28,32 +28,30 @@ const WeatherChart = ({ hours }: Props) => {
     value: hour.precipprob,
   }));
   const windLineData: lineDataItem[] = hours.map((hour) => ({
-    value: hour.windspeed,
+    value: hour.windspeed * 2,
   }));
 
   return (
     <LineChart
-      // initialSpacing={0}
-      endSpacing={40}
+      height={250}
       data={tempLineData}
       data2={precipLineData}
       data3={windLineData}
-      // width={metrics.windowWidth - 40}
       isAnimated
+      curved
       adjustToWidth
+      initialSpacing={0}
       disableScroll
-      xAxisLabelTextStyle={{ fontSize: 12 }}
-      yAxisLabelContainerStyle={{ width: 20, backgroundColor: "red" }}
-      // spacing={(metrics.windowWidth - 40) / (props.hours.length - 1)}
       hideDataPoints
+      xAxisLabelTextStyle={{ fontSize: 12 }}
+      yAxisLabelWidth={0}
       thickness={5}
       hideRules
       hideYAxisText
       hideAxesAndRules
-      color="#0BA5A4"
       color1="red"
-      color2="blue"
-      color3="#0BA5A4"
+      color2="#1e90ff"
+      color3="#228b22"
     />
   );
 };
