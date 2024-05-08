@@ -67,12 +67,27 @@ const systemSlice = createSlice({
           break;
       }
     },
+
+    // toggle dark mode
+    toggleDark: (state) => {
+      if (state.theme.isDark) {
+        state.theme.isDark = false;
+        state.theme.preference = "light";
+      } else {
+        state.theme.isDark = true;
+        state.theme.preference = "dark";
+      }
+    },
   },
 });
 
 // Export all newly created actions here
-export const { setAppState, refreshSystemTheme, setThemePreference } =
-  systemSlice.actions;
+export const {
+  setAppState,
+  refreshSystemTheme,
+  setThemePreference,
+  toggleDark,
+} = systemSlice.actions;
 
 // Create selectors here, or in their own files if needed
 export const selectIsAppActive = (state: RootState) =>

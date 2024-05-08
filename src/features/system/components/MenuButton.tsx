@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/src/redux/reduxHooks";
+import { toggleDark } from "@/src/redux/slices/systemSlice";
 import { useState } from "react";
 import { Alert, ViewStyle } from "react-native";
 import { IconButton, Menu } from "react-native-paper";
@@ -8,10 +10,17 @@ type Props = {
 
 // the button which brings up the app's main menu
 const MenuButton = ({ style }: Props) => {
+  const dispatch = useAppDispatch();
+
   const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
+
+  const onToggle = () => {
+    dispatch(toggleDark());
+    closeMenu();
+  };
 
   const onHelp = () => {
     Alert.alert(
@@ -33,6 +42,7 @@ const MenuButton = ({ style }: Props) => {
         onDismiss={closeMenu}
         anchor={<IconButton icon="menu" onPress={openMenu} />}
       >
+        <Menu.Item onPress={onToggle} title="Light/Dark" />
         <Menu.Item onPress={onHelp} title="Help" />
         <Menu.Item onPress={onSignOut} title="Sign Out" />
       </Menu>

@@ -6,6 +6,7 @@ interface Styles {
   modalCard: ViewStyle;
   item: ViewStyle;
   itemText: TextStyle;
+  pickerItem: TextStyle;
 }
 
 export const createStyles = (theme: AppTheme): Styles => {
@@ -27,6 +28,9 @@ export const createStyles = (theme: AppTheme): Styles => {
     },
     itemText: {
       fontSize: 16,
+    },
+    pickerItem: {
+      color: theme.colors.text,
     },
   });
 };

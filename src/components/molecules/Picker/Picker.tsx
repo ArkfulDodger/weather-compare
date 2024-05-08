@@ -52,7 +52,11 @@ const Picker = ({ data, leftText, ...pickerProps }: Props) => {
 
   const picker = useMemo(
     () => (
-      <NativePicker {...pickerProps} onValueChange={onItemSelect}>
+      <NativePicker
+        {...pickerProps}
+        itemStyle={styles.pickerItem}
+        onValueChange={onItemSelect}
+      >
         {pickerItems}
       </NativePicker>
     ),
