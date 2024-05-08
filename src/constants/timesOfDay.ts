@@ -4,8 +4,13 @@ export enum TimeOfDay {
   Evening = "Evening",
 }
 
+export interface TimeBlock {
+  start: number;
+  end: number;
+}
+
 // specifies start and end times for each time block
-export const TIME_BLOCKS = {
+export const TIME_BLOCKS: { [time in TimeOfDay]: TimeBlock } = {
   [TimeOfDay.Morning]: {
     start: 8,
     end: 12,

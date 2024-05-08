@@ -8,6 +8,7 @@ import {
   selectLocationInput,
   setLocationInput,
 } from "@/src/redux/slices/weatherSelectionSlice";
+import useWeatherAPI from "../../hooks/useWeatherAPI";
 
 export type Props = {
   style?: ViewStyle;
@@ -18,6 +19,11 @@ const LocationPicker = ({ style }: Props) => {
   const location = useAppSelector(selectLocation);
   const locationInput = useAppSelector(selectLocationInput);
   const dispatch = useAppDispatch();
+  const { fetchWeatherData } = useWeatherAPI();
+
+  const onSubmit = () => {
+    fetchWeatherData(locationInput);
+  };
 
   return (
     <>
@@ -27,6 +33,8 @@ const LocationPicker = ({ style }: Props) => {
         onChangeText={(str) => dispatch(setLocationInput(str))}
         placeholder={location}
         clearButtonMode="always"
+        onSubmitEditing={onSubmit}
+        returnKeyType="done"
       />
     </>
   );

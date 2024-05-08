@@ -8,6 +8,10 @@ import LocationPicker from "@/src/features/weather-selection/components/Location
 import DayPicker from "@/src/features/weather-selection/components/DayPicker";
 import TimePicker from "@/src/features/weather-selection/components/TimePicker";
 import MenuButton from "@/src/features/system/components/MenuButton";
+import useWeatherAPI from "@/src/features/weather-selection/hooks/useWeatherAPI";
+import { useAppSelector } from "@/src/redux/reduxHooks";
+import { selectLocation } from "@/src/redux/slices/weatherSelectionSlice";
+import { useEffect } from "react";
 
 export type Props = {};
 
@@ -15,6 +19,13 @@ export type Props = {};
 const HomeScreen = ({}: Props) => {
   const insets = useSafeAreaInsets();
   const styles = useStyles(createStyles, insets);
+  const location = useAppSelector(selectLocation);
+  const { fetchWeatherData } = useWeatherAPI();
+
+  // fetch weather data for default location on startup
+  useEffect(() => {
+    if (location !== "") fetchWeatherData(location);
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

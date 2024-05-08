@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { getTimeOfDay, TimeOfDay } from "@/src/constants/timesOfDay";
 import { Weekday } from "@/src/constants/weekdays";
+import { WeatherResponse } from "@/src/utils/types";
 
 // Define a type for the slice state
 interface WeatherSelectionState {
@@ -10,6 +11,7 @@ interface WeatherSelectionState {
   locationInput: string;
   day: Weekday;
   time: TimeOfDay;
+  data?: WeatherResponse;
 }
 
 // This is the initial state of the slice
@@ -18,6 +20,7 @@ const initialState: WeatherSelectionState = {
   locationInput: "",
   day: new Date().getDay(),
   time: getTimeOfDay(new Date().getHours()) ?? TimeOfDay.Afternoon,
+  data: undefined,
 };
 
 const weatherSelectionSlice = createSlice({
@@ -43,12 +46,27 @@ const weatherSelectionSlice = createSlice({
     setTime: (state, action: PayloadAction<TimeOfDay>) => {
       state.time = action.payload;
     },
+
+    // set weather data, and ensure location matches
+    setWeatherData: (
+      state,
+      action: PayloadAction<WeatherResponse | undefined>
+    ) => {
+      state.data = action.payload;
+      state.location = action.payload?.resolvedAddress ?? "";
+      state.locationInput = "";
+    },
   },
 });
 
 // Export all newly created actions here
-export const { setLocation, setLocationInput, setDay, setTime } =
-  weatherSelectionSlice.actions;
+export const {
+  setLocation,
+  setLocationInput,
+  setDay,
+  setTime,
+  setWeatherData,
+} = weatherSelectionSlice.actions;
 
 // Create selectors here, or in their own files if needed
 export const selectLocation = (state: RootState) =>
@@ -57,6 +75,8 @@ export const selectLocationInput = (state: RootState) =>
   state.weatherSelection.locationInput;
 export const selectDay = (state: RootState) => state.weatherSelection.day;
 export const selectTime = (state: RootState) => state.weatherSelection.time;
+export const selectWeatherData = (state: RootState) =>
+  state.weatherSelection.data;
 
 // Export the reducer function so that it can be added to the store
 export default weatherSelectionSlice.reducer;
