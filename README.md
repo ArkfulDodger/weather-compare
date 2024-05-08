@@ -1,4 +1,4 @@
-# Help Desk
+# Weather Compare
 
 This React Native project is a basic single-page (screen) weather comparison app prototype. Priorities were in architecting a structure that could be extensible and quick to iterate on. The user should be able to compare the weather in the same location on the same weekday across multiple weeks.
 
@@ -30,8 +30,9 @@ Click above for a brief demonstration of the app functionality
 
 ### Android Build
 
-~Android users can download a standalone build of the app here: [Android Build]()~
-~**Note:** Your phone will likely warn you not to download unverified apps. You can either dismiss to download anyway, or view the app in Expo Go using the method below~
+Android users can download a standalone build of the app here: [Android Build]()
+
+**Note:** Your phone will likely warn you not to download unverified apps. You can either dismiss to download anyway, or view the app in Expo Go using the method below
 
 **NOTE:** The standalone Android build of this project will expire at some point in the future. The app will still be able to be run using the instructions below.
 
