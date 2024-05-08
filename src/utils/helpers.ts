@@ -19,10 +19,7 @@ export const getScaledFont = (size: number) => {
 
 // get the url to retrieve 15-day hourly forecast data for the provided location string
 export const generateWeatherAPIUrl = (locationInput: string): string => {
-  const YOUR_API_KEY =
-    process.env.VISUAL_CROSSING_API_KEY ||
-    process.env.EXPO_PUBLIC_VISUAL_CROSSING_API_KEY ||
-    "YF8HMJHNSVNHAAF96P9SRJGZG";
+  const YOUR_API_KEY = "YF8HMJHNSVNHAAF96P9SRJGZG";
 
   const apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(
     locationInput
