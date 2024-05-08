@@ -4,6 +4,7 @@ import WeatherListItem, { WeatherListItemProps } from "../WeatherListItem";
 import { useCallback } from "react";
 import { FlatList, View } from "react-native";
 import metrics from "@/src/utils/metrics";
+import useSelectedWeatherData from "../../hooks/useSelectedWeatherData";
 
 export type Props = {};
 
@@ -167,6 +168,7 @@ const testData: WeatherListItemProps[] = [
 // displays a list of individual days' weather info which can be swiped through
 const WeatherList = ({}: Props) => {
   const styles = useStyles(createStyles);
+  const data = useSelectedWeatherData();
 
   const renderItem = useCallback(
     ({ item }: { item: WeatherListItemProps }) => (
@@ -182,7 +184,7 @@ const WeatherList = ({}: Props) => {
       snapToInterval={metrics.screenWidth}
       disableIntervalMomentum
       horizontal
-      data={testData}
+      data={data}
       renderItem={renderItem}
       keyExtractor={(item) =>
         item.hours[0].datetimeEpoch.toString() || item.datetime

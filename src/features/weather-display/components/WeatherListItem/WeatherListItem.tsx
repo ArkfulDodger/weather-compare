@@ -4,7 +4,6 @@ import { HourlyData } from "@/src/utils/types";
 import { View } from "react-native";
 import { Icon, Text } from "react-native-paper";
 import { getFormattedDate } from "@/src/utils/helpers";
-import { WEATHER_ICONS } from "@/src/constants/weatherIcons";
 import WeatherChart from "../../WeatherChart";
 import { useAppSelector } from "@/src/redux/reduxHooks";
 import { selectTime } from "@/src/redux/slices/weatherSelectionSlice";
@@ -31,19 +30,23 @@ const WeatherListItem = (props: Props) => {
     <View style={styles.container}>
       <Text style={styles.h1}>{dateString}</Text>
       <View style={styles.infoContainer}>
-        <Icon source={WEATHER_ICONS[props.icon].icon} size={100} />
+        <Icon source={props.icon} size={100} />
         <View style={styles.info}>
           <Text style={styles.body}>
-            {props.conditions.split(",")[0]} {props.temp}°F
+            {props.conditions.split(",")[0]} {props.temp.toFixed(0)}°F
           </Text>
           <Text>
-            <Icon source="weather-windy" size={16} /> winds {props.windspeed}mph
+            <Icon source="weather-windy" size={16} /> winds{" "}
+            {props.windspeed.toFixed(0)}mph
           </Text>
           <Text style={styles.small}>
-            <Icon source="water" size={16} />{" "}
-            {props.preciptype
+            <Icon source="water" size={16} />
+            {`${props.precipprob.toFixed(0)}% chance of ${
+              props.preciptype ?? "rain"
+            }`}
+            {/* {props.preciptype
               ? `${props.precipprob}% chance of ${props.preciptype}`
-              : "no rain"}
+              : "no rain"} */}
           </Text>
         </View>
       </View>

@@ -21,7 +21,7 @@ export const TIME_BLOCKS: { [time in TimeOfDay]: TimeBlock } = {
   },
   [TimeOfDay.Evening]: {
     start: 17,
-    end: 9,
+    end: 21,
   },
 };
 
