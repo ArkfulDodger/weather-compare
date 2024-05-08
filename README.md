@@ -28,6 +28,13 @@ Click above for a brief demonstration of the app functionality
 
 ## How to Run the App
 
+### Android Build
+
+~Android users can download a standalone build of the app here: [Android Build]()~
+~**Note:** Your phone will likely warn you not to download unverified apps. You can either dismiss to download anyway, or view the app in Expo Go using the method below~
+
+**NOTE:** The standalone Android build of this project will expire at some point in the future. The app will still be able to be run using the instructions below.
+
 ### Expo Go
 
 1. Clone this repository to your local machine
