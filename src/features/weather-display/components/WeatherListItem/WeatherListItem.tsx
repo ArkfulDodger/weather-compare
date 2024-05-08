@@ -33,7 +33,8 @@ const WeatherListItem = (props: Props) => {
         <Icon source={props.icon} size={100} />
         <View style={styles.info}>
           <Text style={styles.body}>
-            {props.conditions.split(",")[0]} {props.temp.toFixed(0)}°F
+            {props.conditions.split(",")[0].toLowerCase()}{" "}
+            {props.temp.toFixed(0)}°F
           </Text>
           <Text>
             <Icon source="weather-windy" size={16} /> winds{" "}
@@ -41,12 +42,9 @@ const WeatherListItem = (props: Props) => {
           </Text>
           <Text style={styles.small}>
             <Icon source="water" size={16} />
-            {`${props.precipprob.toFixed(0)}% chance of ${
+            {`${props.precipprob.toFixed(0)}% chance ${
               props.preciptype ?? "rain"
             }`}
-            {/* {props.preciptype
-              ? `${props.precipprob}% chance of ${props.preciptype}`
-              : "no rain"} */}
           </Text>
         </View>
       </View>

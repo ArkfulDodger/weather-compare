@@ -20,20 +20,36 @@ const WeatherChart = ({ hours }: Props) => {
     verticalLineStrokeDashArray: [5, 5],
     labelTextStyle: {
       fontSize: 12,
-      fontWeight: index < 2 || index > hours.length - 2 ? "regular" : "bold",
+      fontWeight: index < 2 || index >= hours.length - 2 ? "regular" : "bold",
       opacity: index < 2 || index > hours.length - 3 ? 0.4 : 1,
     },
+    dataPointColor: "transparent",
+    dataPointHeight: 10,
+    dataPointText: `${hour.temp.toFixed(0)}°F`,
   }));
-  const precipLineData: lineDataItem[] = hours.map((hour) => ({
+
+  const precipLineData: lineDataItem[] = hours.map((hour, index) => ({
     value: hour.precipprob,
+    dataPointColor: "transparent",
+    dataPointHeight: 10,
+    dataPointText: index === 4 ? `${hour.precipprob.toFixed(0)}%` : undefined,
   }));
-  const windLineData: lineDataItem[] = hours.map((hour) => ({
+
+  const windLineData: lineDataItem[] = hours.map((hour, index) => ({
     value: hour.windspeed * 2,
+    dataPointColor: "transparent",
+    dataPointHeight: 10,
+    dataPointText: index === 4 ? `${hour.windspeed.toFixed(0)}mph` : undefined,
   }));
+
+  const maxTemp = Math.max(...hours.map((hour) => hour.temp));
 
   return (
     <LineChart
+      overflowTop={Math.min(Math.max((maxTemp - 100) * 2, 0), 20)}
+      overflowBottom={20}
       height={250}
+      maxValue={100}
       data={tempLineData}
       data2={precipLineData}
       data3={windLineData}
@@ -42,7 +58,7 @@ const WeatherChart = ({ hours }: Props) => {
       adjustToWidth
       initialSpacing={0}
       disableScroll
-      hideDataPoints
+      // hideDataPoints
       xAxisLabelTextStyle={{ fontSize: 12 }}
       yAxisLabelWidth={0}
       thickness={5}

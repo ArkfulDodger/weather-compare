@@ -41,6 +41,7 @@ export const createStyles = (theme: AppTheme): Styles => {
     },
     chartContainer: {
       alignSelf: "stretch",
+      paddingVertical: 20,
     },
   });
 
