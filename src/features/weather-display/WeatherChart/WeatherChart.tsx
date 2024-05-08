@@ -3,6 +3,7 @@ import useStyles from "@/src//hooks/useStyles";
 import { createStyles } from "./WeatherChart.styles";
 import { convertTimestamp } from "@/src/utils/helpers";
 import { HourlyData } from "@/src/utils/types";
+import useAppTheme from "@/src/hooks/useAppTheme";
 
 export type Props = {
   hours: HourlyData[];
@@ -10,18 +11,20 @@ export type Props = {
 
 const WeatherChart = ({ hours }: Props) => {
   const styles = useStyles(createStyles);
+  const { colors } = useAppTheme();
 
   const tempLineData: lineDataItem[] = hours.map((hour, index) => ({
     value: hour.temp,
     label: convertTimestamp(hour.datetime),
     showVerticalLine: index === 2 || index === hours.length - 3,
-    verticalLineColor: "black",
+    verticalLineColor: colors.text,
     verticalLineThickness: 2,
     verticalLineStrokeDashArray: [5, 5],
     labelTextStyle: {
       fontSize: 12,
       fontWeight: index < 2 || index >= hours.length - 2 ? "regular" : "bold",
       opacity: index < 2 || index > hours.length - 3 ? 0.4 : 1,
+      color: colors.text,
     },
     dataPointColor: "transparent",
     dataPointHeight: 10,
