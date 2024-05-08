@@ -21,12 +21,30 @@ export interface Styles extends StaticStyles, DynamicStyles {}
 export const createStyles = (theme: AppTheme, insets: EdgeInsets): Styles => {
   const staticStyles = StyleSheet.create<StaticStyles>({
     container: { flex: 1 },
-    headerContainer: { paddingTop: insets.top },
-    upperHeader: { flexDirection: "row", justifyContent: "space-between" },
-    headerLabel: {},
+    headerContainer: {
+      paddingTop: insets.top,
+      backgroundColor: theme.colors.bg2,
+      paddingBottom: 5,
+    },
+    upperHeader: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingHorizontal: 20,
+    },
+    headerLabel: {
+      fontWeight: "bold",
+      color: theme.colors.header,
+      fontSize: 16,
+    },
     menuButton: {},
     locationPicker: {},
-    timeRow: { flexDirection: "row", alignItems: "center" },
+    timeRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingHorizontal: 20,
+      columnGap: 10,
+    },
   });
 
   const dynamicStyles: DynamicStyles = {

@@ -12,12 +12,15 @@ import useWeatherAPI from "@/src/features/weather-selection/hooks/useWeatherAPI"
 import { useAppSelector } from "@/src/redux/reduxHooks";
 import { selectLocation } from "@/src/redux/slices/weatherSelectionSlice";
 import { useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
+import useAppTheme from "@/src/hooks/useAppTheme";
 
 export type Props = {};
 
 // the primary app screen for updating selections and viewing weather data
 const HomeScreen = ({}: Props) => {
   const insets = useSafeAreaInsets();
+  const { colors } = useAppTheme();
   const styles = useStyles(createStyles, insets);
   const location = useAppSelector(selectLocation);
   const { fetchWeatherData } = useWeatherAPI();
@@ -41,7 +44,14 @@ const HomeScreen = ({}: Props) => {
           <TimePicker />
         </View>
       </Surface>
-      <WeatherList />
+      <LinearGradient
+        style={{ flex: 1, zIndex: -1 }}
+        colors={[colors.bg3, colors.bg4]}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 0 }}
+      >
+        <WeatherList />
+      </LinearGradient>
     </View>
   );
 };

@@ -28,7 +28,12 @@ const LocationPicker = ({ style }: Props) => {
   return (
     <>
       <TextInput
-        left={<TextInput.Icon icon="map-marker" />}
+        dense
+        mode="outlined"
+        style={styles.input}
+        outlineStyle={styles.outline}
+        contentStyle={{ paddingLeft: 0 }}
+        left={<TextInput.Icon icon="map-marker" style={styles.icon} />}
         value={locationInput}
         onChangeText={(str) => dispatch(setLocationInput(str))}
         placeholder={location}

@@ -23,15 +23,19 @@ export const createStyles = (theme: AppTheme): Styles => {
     container: {
       width: metrics.windowWidth,
       alignItems: "center",
+      paddingTop: 30,
     },
     infoContainer: {
       flexDirection: "row",
+      paddingVertical: 10,
     },
     info: {
       justifyContent: "space-evenly",
     },
     h1: {
-      fontSize: 22,
+      fontSize: 24,
+      fontWeight: "bold",
+      color: theme.colors.header,
     },
     body: {
       fontSize: 16,
@@ -41,7 +45,7 @@ export const createStyles = (theme: AppTheme): Styles => {
     },
     chartContainer: {
       alignSelf: "stretch",
-      paddingVertical: 20,
+      paddingVertical: 10,
     },
   });
 

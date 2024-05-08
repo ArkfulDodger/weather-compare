@@ -1,12 +1,23 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { AppTheme } from "@/src/theme/themes";
 
 interface Styles {
-	// define static style types
+  input: TextStyle;
+  outline: ViewStyle;
+  icon: ViewStyle;
 }
 
 export const createStyles = (theme: AppTheme): Styles => {
-	return StyleSheet.create<Styles>({ 
-		// define static styles
-	});
+  return StyleSheet.create<Styles>({
+    input: {
+      backgroundColor: "transparent",
+      fontSize: 16,
+    },
+    outline: {
+      borderWidth: 0,
+    },
+    icon: {
+      paddingLeft: 5,
+    },
+  });
 };
